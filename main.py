@@ -1,4 +1,3 @@
-import base64
 import os
 import json
 
@@ -29,9 +28,8 @@ def split_file(in_file:str, out_path:str, max_file_size:int = 1024 * 1024 * 20):
             content = f.read(max_file_size)
             if not content:
                 break
-            content_str = base64.b64encode(content)
-            with open(f"{out_path}\\{name}_chunks\\{name}_chunk_{i}.txt", "wb") as out_f:
-                out_f.write(content_str)
+            with open(f"{out_path}\\{name}_chunks\\{name}_chunk_{i}.chunk", "wb") as out_f:
+                out_f.write(content)
             i += 1
     with open(f"{out_path}\\{name}_chunks\\index.json", "w", encoding="utf-8") as f:
         out = {
@@ -66,6 +64,6 @@ def merge_files(in_path:str, out_path:str, out_name:str = ""):
             out_name = name
     with open(f"{out_path}\\{out_name}{ext}", "wb") as out_f:
         for i in range(chunks):
-            with open(f"{in_path}\\{name}_chunk_{i}.txt", "rb") as f:
-                content = base64.b64decode(f.read())
+            with open(f"{in_path}\\{name}_chunk_{i}.chunk", "rb") as f:
+                content = f.read()
                 out_f.write(content)
