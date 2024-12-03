@@ -69,6 +69,3 @@ def merge_files(in_path:str, out_path:str, out_name:str = ""):
             with open(f"{in_path}\\{name}_chunk_{i}.txt", "rb") as f:
                 content = base64.b64decode(f.read())
                 out_f.write(content)
-
-# split_file("picture.png", ".", 1024 * 50)
-merge_files(".\\picture_chunks", ".\\out")
