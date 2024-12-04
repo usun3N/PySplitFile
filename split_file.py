@@ -1,5 +1,6 @@
 import os
 import json
+import base64
 
 def split_file(in_file:str, out_path:str, max_file_size:int = 1024 * 1024 * 20):
     """
@@ -67,3 +68,4 @@ def merge_files(in_path:str, out_path:str, out_name:str = ""):
             with open(f"{in_path}\\{name}_chunk_{i}.chunk", "rb") as f:
                 content = f.read()
                 out_f.write(content)
+
