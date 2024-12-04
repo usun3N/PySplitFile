@@ -69,5 +69,3 @@ def merge_files_base64(in_path:str, out_path:str, out_name:str = ""):
             with open(f"{in_path}\\{name}_b64chunk_{i}.chunk", "rb") as f:
                 content = base64.b64decode(f.read())
                 out_f.write(content)
-
-split_file_base64("tweetdata.zip", "./split", 1024 * 1024)
